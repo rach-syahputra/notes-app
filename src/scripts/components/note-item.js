@@ -2,10 +2,10 @@ class NoteItem extends HTMLElement {
   _shadowRoot = null
   _style = null
   _note = {
-    id: 'test',
-    title: 'test',
-    body: 'test',
-    createdAt: 'test'
+    id: '',
+    title: '',
+    body: '',
+    createdAt: ''
   }
 
   constructor() {
