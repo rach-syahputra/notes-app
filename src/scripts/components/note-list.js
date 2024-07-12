@@ -27,7 +27,6 @@ class NoteList extends HTMLElement {
       .list {
         display: grid;
         grid-template-columns: ${'1fr '.repeat(this.column)};
-      
         gap: ${this.gutter}px;
       }
     `;
