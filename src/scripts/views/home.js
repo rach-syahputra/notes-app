@@ -1,9 +1,11 @@
 import Notes from '../data/notesData.js'
+import Utils from '../Utils.js'
 
 const home = () => {
   const noteListContainerElement = document.querySelector('#noteListContainer')
   const noteDetailContainerElement = document.querySelector('#noteDetailContainer')
   const noteListElement = noteListContainerElement.querySelector('note-list')
+  const noNotesSelectedElement = noteDetailContainerElement.querySelector('no-notes-selected')
 
   const showNoteList = () => {
     const result = Notes.getAll()
@@ -15,7 +17,7 @@ const home = () => {
       noteItemElement.addEventListener('click', () => {
         const noteItemDetailElement = document.querySelector('note-item-detail')
         noteItemDetailElement.note = note
-        console.log(noteItemDetailElement.note)
+        Utils.hideElement(noNotesSelectedElement)
       })
 
       return noteItemElement
