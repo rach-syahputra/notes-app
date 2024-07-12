@@ -7,3 +7,11 @@
 body {
   font-family: "Asap", sans-serif;
 }
+
+main {
+  padding: 8px;
+}
+
+header {
+  padding: 32px 16px;
+}
