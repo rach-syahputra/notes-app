@@ -4,14 +4,34 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Asap", sans-serif;
-}
-
-main {
-  padding: 8px;
-}
-
 header {
   padding: 32px 16px;
+}
+
+body {
+  font-family: Calibri;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1024px;
+  margin: auto;
+  justify-items: center;
+}
+
+.container .note-list-container,
+.container .note-detail-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.container .note-detail-container {
+  padding: 8px;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
 }
