@@ -42,6 +42,8 @@ class NoteItem extends HTMLElement {
       display: flex;
       flex-direction: column;
       padding: 8px;
+      border-radius: 6px;
+      background-color: #F6F6F6;
     }
     
     .header {
@@ -49,7 +51,7 @@ class NoteItem extends HTMLElement {
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      height: 24px;
+      height: 16px;
     }
 
     .rounded-brown {
@@ -60,6 +62,7 @@ class NoteItem extends HTMLElement {
     }
 
     .note-date {
+      font-size: 14px;
       color: #A0A6A5;
       text-align: right;
     }
@@ -78,11 +81,11 @@ class NoteItem extends HTMLElement {
     this._shadowRoot.innerHTML += `
       <div class="item">
         <div class="header">
-          <h3>title</h3>
+          <h4>${this._note.title}</h4>
           <div class="rounded-brown"></div>
         </div>
-        <p class="note-body">body</p>
-        <span class="note-date">date</span>
+        <p class="note-body">${this._note.body}</p>
+        <span class="note-date">${this._note.createdAt}</span>
       </div>
     `
   }
