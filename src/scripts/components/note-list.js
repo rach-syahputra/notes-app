@@ -2,8 +2,8 @@ class NoteList extends HTMLElement {
   _shadowRoot = null
   _style = null
 
-  _column = 1
-  _gutter = 8
+  _column = 0
+  _gutter = 0
 
   static get observedAttributes() {
     return ['column', 'gutter']
