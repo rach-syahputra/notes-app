@@ -1,11 +1,18 @@
 class NoteItem extends HTMLElement {
   _shadowRoot = null
   _style = null
+
+  _bgcolor = ''
+  _fontcolor = ''
   _note = {
     id: '',
     title: '',
     body: '',
     createdAt: ''
+  }
+
+  static get observedAttributes() {
+    return ['bgcolor', 'fontcolor']
   }
 
   constructor() {
@@ -19,6 +26,22 @@ class NoteItem extends HTMLElement {
 
   _emptyContent() {
     this._shadowRoot.innerHTML = ''
+  }
+
+  set bgcolor(value) {
+    this._bgcolor = value
+  }
+
+  get bgcolor() {
+    return this._bgcolor
+  }
+
+  set fontcolor(value) {
+    this._fontcolor = value
+  }
+
+  get fontcolor() {
+    return this._fontcolor
   }
 
   set note(value) {
@@ -43,7 +66,8 @@ class NoteItem extends HTMLElement {
       flex-direction: column;
       padding: 8px;
       border-radius: 6px;
-      background-color: #F6F6F6;
+      background-color: ${this.bgcolor};
+      color: ${this.fontcolor};
     }
     
     .header {
@@ -63,7 +87,7 @@ class NoteItem extends HTMLElement {
 
     .note-date {
       font-size: 14px;
-      color: #A0A6A5;
+      color: ${this.fontcolor.toLowerCase() !== '#ffffff' ? '#A0A6A5' : this.fontcolor};
       text-align: right;
     }
     `
@@ -88,6 +112,19 @@ class NoteItem extends HTMLElement {
         <span class="note-date">${this._note.createdAt}</span>
       </div>
     `
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'bgcolor':
+        this.bgcolor = newValue;
+        break;
+      case 'fontcolor':
+        this.fontcolor = newValue;
+        break;
+    }
+
+    this.render()
   }
 }
 

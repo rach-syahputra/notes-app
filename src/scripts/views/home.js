@@ -14,17 +14,20 @@ const home = () => {
     const result = Notes.getAll()
     const noteItemElements =  result.map((note) => {
       const noteItemElement = document.createElement('note-item')
-      
+
+      noteItemElement.setAttribute('bgcolor', '#FAFAFA')
+      noteItemElement.setAttribute('fontcolor', '#000000')
       noteItemElement.note = note
 
       noteItemElement.addEventListener('click', () => {
+        resetNoteItemAttributes()
+        noteItemElement.setAttribute('bgcolor', '#E79B3D')
+        noteItemElement.setAttribute('fontcolor', '#FFFFFF')
+
         const formAddNoteElement = noteDetailContainerElement.querySelector('form-add-note')
 
         if (formAddNoteElement) {
           formAddNoteElement.remove()
-
-          isFormAddNote = false
-
           Utils.showElement(noteDetailElement, 'flex')
         }
 
@@ -36,6 +39,14 @@ const home = () => {
       return noteItemElement
     })
     noteListElement.append(...noteItemElements)
+  }
+
+  const resetNoteItemAttributes = () => {
+    const noteItemElements = noteListElement.querySelectorAll('note-item')
+    noteItemElements.forEach((noteItemElement) => {
+      noteItemElement.setAttribute('bgcolor', '#FAFAFA')
+      noteItemElement.setAttribute('fontcolor', '#000000')
+    })
   }
 
   const showFormAddNote = () => {

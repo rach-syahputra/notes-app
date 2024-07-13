@@ -2,7 +2,7 @@ class ButtonAddNote extends HTMLElement {
   _shadowRoot = null
   _style = null
 
-  _src = null
+  _src = ''
 
   static get observedAttributes() {
     return ['src']
