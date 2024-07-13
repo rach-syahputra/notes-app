@@ -38,6 +38,12 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 
+  .container #noteDetailContainer {
+    position: sticky;
+    left: 0;
+    top: 0;
+  }
+
   .container .note-detail-container {
     display: flex;
     flex: 1;
