@@ -28,6 +28,13 @@ class NoteList extends HTMLElement {
         display: grid;
         grid-template-columns: ${'1fr '.repeat(this.column)};
         gap: ${this.gutter}px;
+        padding: 0 8px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .list {
+          padding: 0;
+        }
       }
     `;
   }
