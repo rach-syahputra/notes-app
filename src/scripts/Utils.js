@@ -3,8 +3,8 @@ class Utils {
     element.innerHTML = '';
   }
 
-  static showElement(element) {
-    element.style.display = 'block';
+  static showElement(element, display = 'block') {
+    element.style.display = display;
     element.hidden = false;
   }
 
