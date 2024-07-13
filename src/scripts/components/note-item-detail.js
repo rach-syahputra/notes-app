@@ -2,11 +2,19 @@ class NoteItemDetail extends HTMLElement {
   _shadowRoot = null
   _style = null
 
+  _titlecolor = ''
+  _bodycolor = ''
+  _datecolor = ''
+
   _note = {
     id: '',
     title: '',
     body: '',
     createdAt: ''
+  }
+
+  static get observedAttributes() {
+    return ['titlecolor', 'bodycolor', 'datecolor']
   }
 
   constructor() {
@@ -16,6 +24,30 @@ class NoteItemDetail extends HTMLElement {
     this._style = document.createElement('style')
  
     this.render()
+  }
+
+  set titlecolor(value) {
+    this._titlecolor = value
+  }
+ 
+  get titlecolor() {
+    return this._titlecolor
+  }
+
+  set bodycolor(value) {
+    this._bodycolor = value
+  }
+ 
+  get bodycolor() {
+    return this._bodycolor
+  }
+
+  set datecolor(value) {
+    this._datecolor = value
+  }
+ 
+  get datecolor() {
+    return this._datecolor
   }
 
   set note(value) {
@@ -43,12 +75,16 @@ class NoteItemDetail extends HTMLElement {
       .item-detail .note-title {
         font-size: 24px;
         font-weight: bold;
-        color: #E79B3D;
+        color: ${this.titlecolor};
+      }
+
+      .item-detail .note-body {
+        color: ${this.bodycolor}
       }
 
       .item-detail .note-date {
         font-size: 14px;
-        color: #A0A6A5;
+        color: ${this.datecolor};
       }
     `
   }
@@ -69,6 +105,22 @@ class NoteItemDetail extends HTMLElement {
         <span class="note-date">${this._note.createdAt}</span>
       </div>
     `
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'titlecolor':
+        this.titlecolor = newValue
+        break
+      case 'bodycolor':
+        this.bodycolor = newValue
+        break
+      case 'datecolor':
+        this.datecolor = newValue
+        break
+    }
+
+    this.render()
   }
 }
 
