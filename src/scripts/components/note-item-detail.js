@@ -1,3 +1,5 @@
+import Utils from "../Utils.js"
+
 class NoteItemDetail extends HTMLElement {
   _shadowRoot = null
   _style = null
@@ -102,7 +104,7 @@ class NoteItemDetail extends HTMLElement {
       <div class="item-detail">
         <span class="note-title">${this._note.title}</span>
         <p class="note-body">${this._note.body}</p>
-        <span class="note-date">${this._note.createdAt}</span>
+        <span class="note-date">${Utils.formatDate(this._note.createdAt)}</span>
       </div>
     `
   }
