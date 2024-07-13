@@ -29,9 +29,20 @@ body {
 }
 
 .container .note-detail-container {
-  padding: 8px;
+  padding: 16px;
   width: 100%;
-  height: fit-content;
-  justify-content: center;
+  height: 500px;
   align-items: center;
+  justify-content: space-between;
+}
+
+.container .note-detail-container .note-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.container .note-detail-container .note-detail img {
+  margin-bottom: 8px;
 }
