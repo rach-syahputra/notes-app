@@ -9,10 +9,6 @@ class NoteItemDetail extends HTMLElement {
     createdAt: ''
   }
 
-  static get observedAttributes() {
-    return ['column', 'gutter']
-  }
-
   constructor() {
     super()
 
@@ -42,7 +38,6 @@ class NoteItemDetail extends HTMLElement {
       .item-detail {
         display: flex;
         flex-direction: column;
-        gap: 16px;
       }
 
       .item-detail .note-title {
