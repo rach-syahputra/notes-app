@@ -29,6 +29,7 @@ const home = () => {
         if (formAddNoteElement) {
           formAddNoteElement.remove()
           Utils.showElement(noteDetailElement, 'flex')
+          Utils.showElement(buttonAddNoteElement)
         }
 
         const noteItemDetailElement = document.querySelector('note-item-detail')

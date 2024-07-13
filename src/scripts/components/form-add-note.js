@@ -121,7 +121,6 @@ class FormAddNote extends HTMLElement {
           Utils.showElement(noteDetailElement, 'flex')
           Utils.showElement(buttonAddNoteElement)
         }
-        
       }
     });
   }
