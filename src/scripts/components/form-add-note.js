@@ -1,3 +1,5 @@
+import Utils from "../Utils.js";
+
 class FormAddNote extends HTMLElement {
   _shadowRoot = null
   _style = null
@@ -53,11 +55,63 @@ class FormAddNote extends HTMLElement {
         height: 200px;
         padding: 8px;
       }
+
+      .validation-message {
+        color: red;
+      }
     `;
   }
 
   _emptyContent() {
     this._shadowRoot.innerHTML = '';
+  }
+
+  _validateInput(input, messageElement) {
+    if (!input.value) {
+      messageElement.textContent = `${input.name.charAt(0).toUpperCase() + input.name.slice(1)} is required.`;
+      return false;
+    } else {
+      messageElement.textContent = '';
+      return true;
+    }
+  }
+
+  _attachEventListeners() {
+    const form = this._shadowRoot.querySelector('form');
+    const titleInput = this._shadowRoot.querySelector('#title');
+    const bodyInput = this._shadowRoot.querySelector('#body');
+    const titleValidationMessage = this._shadowRoot.querySelector('#titleValidation');
+    const bodyValidationMessage = this._shadowRoot.querySelector('#bodyValidation');
+
+    titleInput.addEventListener('change', () => this._validateInput(titleInput, titleValidationMessage));
+    titleInput.addEventListener('invalid', () => this._validateInput(titleInput, titleValidationMessage));
+    titleInput.addEventListener('blur', () => this._validateInput(titleInput, titleValidationMessage));
+    bodyInput.addEventListener('input', () => this._validateInput(bodyInput, bodyValidationMessage));
+    bodyInput.addEventListener('invalid', () => this._validateInput(bodyInput, bodyValidationMessage));
+    bodyInput.addEventListener('blur', () => this._validateInput(bodyInput, bodyValidationMessage));
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const isTitleValid = this._validateInput(titleInput, titleValidationMessage);
+      const isBodyValid = this._validateInput(bodyInput, bodyValidationMessage);
+
+      if (isTitleValid && isBodyValid) {
+        const noteDetailContainerElement = document.querySelector('#noteDetailContainer')
+        const formAddNoteElement = noteDetailContainerElement.querySelector('form-add-note')
+        
+        if (formAddNoteElement) {
+          formAddNoteElement.remove()
+          
+          const noteDetailElement = noteDetailContainerElement.querySelector('#noteDetail')
+          const buttonAddNoteElement = noteDetailContainerElement.querySelector('button-add-note')
+
+          Utils.showElement(noteDetailElement, 'flex')
+          Utils.showElement(buttonAddNoteElement)
+        }
+        
+      }
+    });
   }
   
   render() {
@@ -92,8 +146,12 @@ class FormAddNote extends HTMLElement {
           ></textarea>
           <p id="bodyValidation" class="validation-message" aria-live="polite"></p>
         </div>
+
+        <button>Add Note</button>
       </form>
     `;
+
+    this._attachEventListeners();
   }
 }
 

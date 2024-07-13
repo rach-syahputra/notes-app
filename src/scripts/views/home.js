@@ -23,7 +23,6 @@ const home = () => {
         if (formAddNoteElement) {
           formAddNoteElement.remove()
 
-          buttonAddNoteElement.setAttribute('src', 'src/assets/plus.png')
           isFormAddNote = false
 
           Utils.showElement(noteDetailElement, 'flex')
@@ -41,24 +40,14 @@ const home = () => {
 
   const showFormAddNote = () => {
     Utils.hideElement(noteDetailElement)
+    Utils.hideElement(buttonAddNoteElement)
 
     const formAddNoteElement = document.createElement('form-add-note')
     noteDetailContainerElement.appendChild(formAddNoteElement)
-
-    buttonAddNoteElement.setAttribute('src', 'src/assets/check.png')
   }
 
-  let isFormAddNote = false
-
   buttonAddNoteElement.addEventListener('click', () => {
-    if (isFormAddNote) {
-      showNoteDetail()
-      isFormAddNote = false
-    } else {
-      showFormAddNote()
-      isFormAddNote = true
-    }
-    
+    showFormAddNote()
   }) 
 
   showNoteList()
