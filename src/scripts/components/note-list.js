@@ -12,10 +12,10 @@ class NoteList extends HTMLElement {
   constructor() {
     super()
 
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._style = document.createElement('style');
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._style = document.createElement('style')
  
-    this.render();
+    this.render()
   }
 
   _updateStyle() {
@@ -36,7 +36,7 @@ class NoteList extends HTMLElement {
           padding: 0;
         }
       }
-    `;
+    `
   }
 
   set column(value) {
@@ -44,7 +44,7 @@ class NoteList extends HTMLElement {
   }
 
   get column() {
-    return this._column;
+    return this._column
   }
 
   set gutter(value) {
@@ -52,33 +52,33 @@ class NoteList extends HTMLElement {
   }
 
   get gutter() {
-    return this._gutter;
+    return this._gutter
   }
 
   _emptyContent() {
-    this._shadowRoot.innerHTML = '';
+    this._shadowRoot.innerHTML = ''
   }
   
   render() {
-    this._emptyContent();
-    this._updateStyle();
+    this._emptyContent()
+    this._updateStyle()
  
     this._shadowRoot.appendChild(this._style);
     this._shadowRoot.innerHTML += `
       <div class="list">
         <slot></slot>
       </div>
-    `;
+    `
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'column':
         this.column = newValue;
-        break;
+        break
       case 'gutter':
         this.gutter = newValue;
-        break;
+        break
     }
 
     this.render()

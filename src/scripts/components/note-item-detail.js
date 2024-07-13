@@ -12,10 +12,10 @@ class NoteItemDetail extends HTMLElement {
   constructor() {
     super()
 
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._style = document.createElement('style');
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._style = document.createElement('style')
  
-    this.render();
+    this.render()
   }
 
   set note(value) {
@@ -50,25 +50,25 @@ class NoteItemDetail extends HTMLElement {
         font-size: 14px;
         color: #A0A6A5;
       }
-    `;
+    `
   }
 
   _emptyContent() {
-    this._shadowRoot.innerHTML = '';
+    this._shadowRoot.innerHTML = ''
   }
   
   render() {
-    this._emptyContent();
-    this._updateStyle();
+    this._emptyContent()
+    this._updateStyle()
  
-    this._shadowRoot.appendChild(this._style);
+    this._shadowRoot.appendChild(this._style)
     this._shadowRoot.innerHTML += `
       <div class="item-detail">
         <span class="note-title">${this._note.title}</span>
         <p class="note-body">${this._note.body}</p>
         <span class="note-date">${this._note.createdAt}</span>
       </div>
-    `;
+    `
   }
 }
 

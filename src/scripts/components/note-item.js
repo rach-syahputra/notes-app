@@ -118,10 +118,10 @@ class NoteItem extends HTMLElement {
     switch (name) {
       case 'bgcolor':
         this.bgcolor = newValue;
-        break;
+        break
       case 'fontcolor':
         this.fontcolor = newValue;
-        break;
+        break
     }
 
     this.render()

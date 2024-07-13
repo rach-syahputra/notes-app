@@ -11,18 +11,18 @@ class ButtonAddNote extends HTMLElement {
   constructor() {
     super()
 
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._style = document.createElement('style');
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._style = document.createElement('style')
  
-    this.render();
+    this.render()
   }
 
   set src(value) {
-    this._src = value;
+    this._src = value
   }
  
   get src() {
-    return this._src;
+    return this._src
   }
 
   _updateStyle() {
@@ -62,18 +62,18 @@ class ButtonAddNote extends HTMLElement {
       button .img-container img {
         width: 14px;
       }
-    `;
+    `
   }
 
   _emptyContent() {
-    this._shadowRoot.innerHTML = '';
+    this._shadowRoot.innerHTML = ''
   }
   
   render() {
-    this._emptyContent();
-    this._updateStyle();
+    this._emptyContent()
+    this._updateStyle()
  
-    this._shadowRoot.appendChild(this._style);
+    this._shadowRoot.appendChild(this._style)
     this._shadowRoot.innerHTML += `
       <button>
         <div class="img-container">
@@ -81,14 +81,14 @@ class ButtonAddNote extends HTMLElement {
         </div>
         <span>Add note</span>
       </button>
-    `;
+    `
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'src':
-        this.src = newValue;
-        break;
+        this.src = newValue
+        break
     }
 
     this.render()

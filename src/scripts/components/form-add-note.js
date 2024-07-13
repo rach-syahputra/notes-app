@@ -1,4 +1,4 @@
-import Utils from "../Utils.js";
+import Utils from "../Utils.js"
 
 class FormAddNote extends HTMLElement {
   _shadowRoot = null
@@ -7,10 +7,10 @@ class FormAddNote extends HTMLElement {
   constructor() {
     super()
 
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._style = document.createElement('style');
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._style = document.createElement('style')
  
-    this.render();
+    this.render()
   }
 
   _updateStyle() {
@@ -71,42 +71,42 @@ class FormAddNote extends HTMLElement {
         cursor: pointer;
         width: 100%;
       }
-    `;
+    `
   }
 
   _emptyContent() {
-    this._shadowRoot.innerHTML = '';
+    this._shadowRoot.innerHTML = ''
   }
 
   _validateInput(input, messageElement) {
     if (!input.value) {
-      messageElement.textContent = `${input.name.charAt(0).toUpperCase() + input.name.slice(1)} is required.`;
-      return false;
+      messageElement.textContent = `${input.name.charAt(0).toUpperCase() + input.name.slice(1)} is required.`
+      return false
     } else {
-      messageElement.textContent = '';
-      return true;
+      messageElement.textContent = ''
+      return true
     }
   }
 
   _attachEventListeners() {
-    const form = this._shadowRoot.querySelector('form');
-    const titleInput = this._shadowRoot.querySelector('#title');
-    const bodyInput = this._shadowRoot.querySelector('#body');
-    const titleValidationMessage = this._shadowRoot.querySelector('#titleValidation');
-    const bodyValidationMessage = this._shadowRoot.querySelector('#bodyValidation');
+    const form = this._shadowRoot.querySelector('form')
+    const titleInput = this._shadowRoot.querySelector('#title')
+    const bodyInput = this._shadowRoot.querySelector('#body')
+    const titleValidationMessage = this._shadowRoot.querySelector('#titleValidation')
+    const bodyValidationMessage = this._shadowRoot.querySelector('#bodyValidation')
 
-    titleInput.addEventListener('change', () => this._validateInput(titleInput, titleValidationMessage));
-    titleInput.addEventListener('invalid', () => this._validateInput(titleInput, titleValidationMessage));
-    titleInput.addEventListener('blur', () => this._validateInput(titleInput, titleValidationMessage));
-    bodyInput.addEventListener('input', () => this._validateInput(bodyInput, bodyValidationMessage));
-    bodyInput.addEventListener('invalid', () => this._validateInput(bodyInput, bodyValidationMessage));
-    bodyInput.addEventListener('blur', () => this._validateInput(bodyInput, bodyValidationMessage));
+    titleInput.addEventListener('change', () => this._validateInput(titleInput, titleValidationMessage))
+    titleInput.addEventListener('invalid', () => this._validateInput(titleInput, titleValidationMessage))
+    titleInput.addEventListener('blur', () => this._validateInput(titleInput, titleValidationMessage))
+    bodyInput.addEventListener('input', () => this._validateInput(bodyInput, bodyValidationMessage))
+    bodyInput.addEventListener('invalid', () => this._validateInput(bodyInput, bodyValidationMessage))
+    bodyInput.addEventListener('blur', () => this._validateInput(bodyInput, bodyValidationMessage))
 
     form.addEventListener('submit', (event) => {
-      event.preventDefault();
+      event.preventDefault()
 
-      const isTitleValid = this._validateInput(titleInput, titleValidationMessage);
-      const isBodyValid = this._validateInput(bodyInput, bodyValidationMessage);
+      const isTitleValid = this._validateInput(titleInput, titleValidationMessage)
+      const isBodyValid = this._validateInput(bodyInput, bodyValidationMessage)
 
       if (isTitleValid && isBodyValid) {
         const noteDetailContainerElement = document.querySelector('#noteDetailContainer')
@@ -122,14 +122,14 @@ class FormAddNote extends HTMLElement {
           Utils.showElement(buttonAddNoteElement)
         }
       }
-    });
+    })
   }
   
   render() {
-    this._emptyContent();
-    this._updateStyle();
+    this._emptyContent()
+    this._updateStyle()
  
-    this._shadowRoot.appendChild(this._style);
+    this._shadowRoot.appendChild(this._style)
     this._shadowRoot.innerHTML += `
       <form>
         <div class="form-group">
@@ -160,9 +160,9 @@ class FormAddNote extends HTMLElement {
 
         <button>Add Note</button>
       </form>
-    `;
+    `
 
-    this._attachEventListeners();
+    this._attachEventListeners()
   }
 }
 
