@@ -25,7 +25,6 @@ class FormAddNote extends HTMLElement {
         display: flex;
         flex-direction: column;
         gap: 16px;
-        
       }
 
       label {
@@ -35,8 +34,10 @@ class FormAddNote extends HTMLElement {
       }
 
       input, textarea {
-        width: 100%;
         border: 2px solid #E6E6E6;
+        border-radius: 4px;
+        width: 100%;
+        width: 96%;
       }
 
       input:focus-visible, textarea:focus-visible {
@@ -58,6 +59,17 @@ class FormAddNote extends HTMLElement {
 
       .validation-message {
         color: red;
+      }
+
+      button {
+        background-color: #E79B3D;
+        padding: 12px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
       }
     `;
   }
