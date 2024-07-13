@@ -29,7 +29,9 @@ class ButtonAddNote extends HTMLElement {
     this._style.textContent = `
       :host {
         display: block;
-        align-self: end;
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
       }
 
       button {
