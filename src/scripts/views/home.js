@@ -25,10 +25,6 @@ const home = () => {
     noteListElement.append(...noteItemElements)
   }
 
-  const onClickNoteItem = () => {
-
-  }
-
   const showNoteDetail = () => {
     const result = Notes.getAll()
     const noteItemElements =  result.map((note) => {
