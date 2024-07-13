@@ -2,6 +2,12 @@ class NoNotesSelected extends HTMLElement {
   _shadowRoot = null
   _style = null
 
+  _fontcolor = ''
+
+  static get observedAttributes() {
+    return ['fontcolor']
+  }
+
   constructor() {
     super()
 
@@ -9,6 +15,14 @@ class NoNotesSelected extends HTMLElement {
     this._style = document.createElement('style')
 
     this.render()
+  }
+
+  set fontcolor(value) {
+    this._fontcolor = value
+  }
+ 
+  get fontcolor() {
+    return this._fontcolor
   }
 
   _emptyContent() {
@@ -23,7 +37,7 @@ class NoNotesSelected extends HTMLElement {
     }
 
     h2 {
-      color: #A0A6A5;
+      color: ${this.fontcolor};
       margin-block: 64px;
     }
     `
@@ -41,6 +55,16 @@ class NoNotesSelected extends HTMLElement {
     this._shadowRoot.innerHTML += `
       <h2>No notes selected</h2>
     `
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'fontcolor':
+        this.fontcolor = newValue
+        break
+    }
+
+    this.render()
   }
 }
 customElements.define('no-notes-selected', NoNotesSelected)
