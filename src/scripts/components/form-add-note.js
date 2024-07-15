@@ -123,24 +123,7 @@ class FormAddNote extends HTMLElement {
   _addNote(event) {
     event.preventDefault()
 
-    this._titleInput.addEventListener('change', () =>
-      this._validateInput(this._titleInput, this._titleValidationMessage)
-    )
-    this._titleInput.addEventListener('invalid', () =>
-      this._validateInput(this._titleInput, this._titleValidationMessage)
-    )
-    this._titleInput.addEventListener('blur', () =>
-      this._validateInput(this._titleInput, this._titleValidationMessage)
-    )
-    this._bodyInput.addEventListener('input', () =>
-      this._validateInput(this._bodyInput, this._bodyValidationMessage)
-    )
-    this._bodyInput.addEventListener('invalid', () =>
-      this._validateInput(this._bodyInput, this._bodyValidationMessage)
-    )
-    this._bodyInput.addEventListener('blur', () =>
-      this._validateInput(this._bodyInput, this._bodyValidationMessage)
-    )
+    // console.log()
 
     const isTitleValid = this._validateInput(
       this._titleInput,
@@ -249,6 +232,26 @@ class FormAddNote extends HTMLElement {
     this._bodyValidationMessage =
       this._shadowRoot.querySelector('#bodyValidation')
     this._cancelButtonElement = this._shadowRoot.querySelector('.cancel')
+
+    // validations
+    this._titleInput.addEventListener('change', () =>
+      this._validateInput(this._titleInput, this._titleValidationMessage)
+    )
+    this._titleInput.addEventListener('invalid', () =>
+      this._validateInput(this._titleInput, this._titleValidationMessage)
+    )
+    this._titleInput.addEventListener('blur', () =>
+      this._validateInput(this._titleInput, this._titleValidationMessage)
+    )
+    this._bodyInput.addEventListener('change', () =>
+      this._validateInput(this._bodyInput, this._bodyValidationMessage)
+    )
+    this._bodyInput.addEventListener('invalid', () =>
+      this._validateInput(this._bodyInput, this._bodyValidationMessage)
+    )
+    this._bodyInput.addEventListener('blur', () =>
+      this._validateInput(this._bodyInput, this._bodyValidationMessage)
+    )
   }
 }
 
