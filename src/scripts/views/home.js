@@ -80,6 +80,10 @@ const home = () => {
 
     const formAddNoteElement = document.createElement('form-add-note')
     formAddNoteElement.addEventListener('noteAdded', onAddNoteHandler)
+    formAddNoteElement.addEventListener(
+      'addNoteCanceled',
+      onCancelAddNoteHandler
+    )
     noteDetailContainerElement.appendChild(formAddNoteElement)
   }
 
@@ -87,6 +91,23 @@ const home = () => {
     const note = event.detail
     await NotesAPi.createNote(note)
     showNoteList()
+  }
+
+  const onCancelAddNoteHandler = () => {
+    const formAddNoteElement =
+      noteDetailContainerElement.querySelector('form-add-note')
+
+    if (formAddNoteElement) {
+      formAddNoteElement.remove()
+
+      const noteDetailElement =
+        noteDetailContainerElement.querySelector('note-detail')
+      const buttonAddNoteElement =
+        noteDetailContainerElement.querySelector('button-add-note')
+
+      Utils.showElement(noteDetailElement)
+      Utils.showElement(buttonAddNoteElement)
+    }
   }
 
   const buttonAddNoteElement =
