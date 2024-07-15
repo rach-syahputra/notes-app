@@ -32,8 +32,16 @@ const home = () => {
           Utils.showElement(buttonAddNoteElement)
         }
 
-        const noteItemDetailElement = document.querySelector('note-item-detail')
+        if(document.querySelector('note-item-detail')) {
+          document.querySelector('note-item-detail').remove()
+        } // check later
+
+        const noteItemDetailElement = document.createElement('note-item-detail')
+        noteItemDetailElement.setAttribute('titlecolor', '#E79B3D')
+        noteItemDetailElement.setAttribute('bodycolor', '#000000')
+        noteItemDetailElement.setAttribute('datecolor', '#A0A6A5')
         noteItemDetailElement.note = note
+        noteDetailElement.append(noteItemDetailElement)
         Utils.hideElement(noNotesSelectedElement)
       })
 
