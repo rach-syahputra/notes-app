@@ -20,7 +20,7 @@ const home = () => {
       noteItemElement.setAttribute('fontcolor', '#000000')
       noteItemElement.note = note
 
-      noteItemElement.addEventListener('click', () => {
+      noteItemElement.addEventListener('click', async () => {
         resetNoteItemAttributes()
         noteItemElement.setAttribute('bgcolor', '#E79B3D')
         noteItemElement.setAttribute('fontcolor', '#FFFFFF')
@@ -46,7 +46,9 @@ const home = () => {
         noteItemDetailElement.setAttribute('titlecolor', '#E79B3D')
         noteItemDetailElement.setAttribute('bodycolor', '#000000')
         noteItemDetailElement.setAttribute('datecolor', '#A0A6A5')
-        noteItemDetailElement.note = note
+
+        const noteData = await NotesAPi.getSingleNote(note.id)
+        noteItemDetailElement.note = noteData
         noteDetailElement.append(noteItemDetailElement)
 
         const noNotesSelectedElement =
