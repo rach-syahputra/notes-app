@@ -1,4 +1,4 @@
-import Notes from '../data/notesData.js'
+import NotesAPi from '../data/remote/notes-api.js'
 import Utils from '../Utils.js'
 
 const home = () => {
@@ -11,9 +11,9 @@ const home = () => {
   const noteDetailElement =
     noteDetailContainerElement.querySelector('note-detail')
 
-  const showNoteList = () => {
-    const result = Notes.getAll()
-    const noteItemElements = result.map((note) => {
+  const showNoteList = async () => {
+    const notes = await NotesAPi.getNotes()
+    const noteItemElements = notes.map((note) => {
       const noteItemElement = document.createElement('note-item')
 
       noteItemElement.setAttribute('bgcolor', '#FAFAFA')
