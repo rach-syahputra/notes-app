@@ -14,7 +14,7 @@ class NoteList extends HTMLElement {
 
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this._style = document.createElement('style')
- 
+
     this.render()
   }
 
@@ -58,12 +58,12 @@ class NoteList extends HTMLElement {
   _emptyContent() {
     this._shadowRoot.innerHTML = ''
   }
-  
+
   render() {
     this._emptyContent()
     this._updateStyle()
- 
-    this._shadowRoot.appendChild(this._style);
+
+    this._shadowRoot.appendChild(this._style)
     this._shadowRoot.innerHTML += `
       <div class="list">
         <slot></slot>
@@ -74,10 +74,10 @@ class NoteList extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'column':
-        this.column = newValue;
+        this.column = newValue
         break
       case 'gutter':
-        this.gutter = newValue;
+        this.gutter = newValue
         break
     }
 

@@ -1,4 +1,4 @@
-import Utils from "../Utils.js"
+import Utils from '../Utils.js'
 
 class NoteItemDetail extends HTMLElement {
   _shadowRoot = null
@@ -12,7 +12,7 @@ class NoteItemDetail extends HTMLElement {
     id: '',
     title: '',
     body: '',
-    createdAt: ''
+    createdAt: '',
   }
 
   static get observedAttributes() {
@@ -24,14 +24,14 @@ class NoteItemDetail extends HTMLElement {
 
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this._style = document.createElement('style')
- 
+
     this.render()
   }
 
   set titlecolor(value) {
     this._titlecolor = value
   }
- 
+
   get titlecolor() {
     return this._titlecolor
   }
@@ -39,7 +39,7 @@ class NoteItemDetail extends HTMLElement {
   set bodycolor(value) {
     this._bodycolor = value
   }
- 
+
   get bodycolor() {
     return this._bodycolor
   }
@@ -47,7 +47,7 @@ class NoteItemDetail extends HTMLElement {
   set datecolor(value) {
     this._datecolor = value
   }
- 
+
   get datecolor() {
     return this._datecolor
   }
@@ -94,11 +94,11 @@ class NoteItemDetail extends HTMLElement {
   _emptyContent() {
     this._shadowRoot.innerHTML = ''
   }
-  
+
   render() {
     this._emptyContent()
     this._updateStyle()
- 
+
     this._shadowRoot.appendChild(this._style)
     this._shadowRoot.innerHTML += `
       <div class="item-detail">

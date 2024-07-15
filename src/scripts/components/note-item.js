@@ -1,4 +1,4 @@
-import Utils from "../Utils.js"
+import Utils from '../Utils.js'
 
 class NoteItem extends HTMLElement {
   _shadowRoot = null
@@ -10,7 +10,7 @@ class NoteItem extends HTMLElement {
     id: '',
     title: '',
     body: '',
-    createdAt: ''
+    createdAt: '',
   }
 
   static get observedAttributes() {
@@ -119,10 +119,10 @@ class NoteItem extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'bgcolor':
-        this.bgcolor = newValue;
+        this.bgcolor = newValue
         break
       case 'fontcolor':
-        this.fontcolor = newValue;
+        this.fontcolor = newValue
         break
     }
 

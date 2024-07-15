@@ -20,7 +20,7 @@ class NoNotesSelected extends HTMLElement {
   set fontcolor(value) {
     this._fontcolor = value
   }
- 
+
   get fontcolor() {
     return this._fontcolor
   }
