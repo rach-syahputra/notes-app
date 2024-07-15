@@ -34,6 +34,29 @@ class NotesAPi {
       console.error(error)
     }
   }
+
+  static async createNote(note) {
+    try {
+      const response = await fetch(`${BASE_URL}/notes`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(note),
+      })
+
+      if (!response.status >= 200 && response.status < 300) {
+        throw new Error('Add note failed')
+      }
+
+      const responseJson = await response.json()
+      const { data } = responseJson
+
+      return data
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 
 export default NotesAPi
