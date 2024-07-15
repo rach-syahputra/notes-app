@@ -61,15 +61,30 @@ class FormAddNote extends HTMLElement {
         color: red;
       }
 
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
       button {
-        background-color: #E79B3D;
         padding: 12px;
-        color: #fff;
-        border: none;
         border-radius: 4px;
         font-weight: bold;
         cursor: pointer;
         width: 100%;
+      }
+
+      .add-note {
+        background-color: #E79B3D;
+        color: #fff;
+        border: none;
+      }
+
+      .cancel {
+        border: 1px solid #E79B3D;
+        color: #E79B3D;
+        background: none;
       }
     `
   }
@@ -96,6 +111,7 @@ class FormAddNote extends HTMLElement {
       this._shadowRoot.querySelector('#titleValidation')
     const bodyValidationMessage =
       this._shadowRoot.querySelector('#bodyValidation')
+    const cancelButtonElement = this._shadowRoot.querySelector('.cancel')
 
     titleInput.addEventListener('change', () =>
       this._validateInput(titleInput, titleValidationMessage)
@@ -145,6 +161,28 @@ class FormAddNote extends HTMLElement {
         }
       }
     })
+
+    cancelButtonElement.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      const noteDetailContainerElement = document.querySelector(
+        '#noteDetailContainer'
+      )
+      const formAddNoteElement =
+        noteDetailContainerElement.querySelector('form-add-note')
+
+      if (formAddNoteElement) {
+        formAddNoteElement.remove()
+
+        const noteDetailElement =
+          noteDetailContainerElement.querySelector('note-detail')
+        const buttonAddNoteElement =
+          noteDetailContainerElement.querySelector('button-add-note')
+
+        Utils.showElement(noteDetailElement)
+        Utils.showElement(buttonAddNoteElement)
+      }
+    })
   }
 
   render() {
@@ -180,7 +218,10 @@ class FormAddNote extends HTMLElement {
           <p id="bodyValidation" class="validation-message" aria-live="polite"></p>
         </div>
 
-        <button>Add Note</button>
+        <div class="buttons">
+          <button class="add-note">Add Note</button>
+          <button class="cancel">Cancel</button>
+        </div>
       </form>
     `
 
