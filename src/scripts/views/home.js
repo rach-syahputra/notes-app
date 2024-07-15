@@ -5,14 +5,15 @@ const home = () => {
   const noteListContainerElement = document.querySelector('#noteListContainer')
   const noteListElement = noteListContainerElement.querySelector('note-list')
 
-  const noteDetailContainerElement = document.querySelector('#noteDetailContainer')
-  const noteDetailElement = noteDetailContainerElement.querySelector('#noteDetail')
-  const noNotesSelectedElement = noteDetailContainerElement.querySelector('no-notes-selected')
-  const buttonAddNoteElement = noteDetailContainerElement.querySelector('button-add-note')
+  const noteDetailContainerElement = document.querySelector(
+    '#noteDetailContainer'
+  )
+  const noteDetailElement =
+    noteDetailContainerElement.querySelector('note-detail')
 
   const showNoteList = () => {
     const result = Notes.getAll()
-    const noteItemElements =  result.map((note) => {
+    const noteItemElements = result.map((note) => {
       const noteItemElement = document.createElement('note-item')
 
       noteItemElement.setAttribute('bgcolor', '#FAFAFA')
@@ -24,17 +25,22 @@ const home = () => {
         noteItemElement.setAttribute('bgcolor', '#E79B3D')
         noteItemElement.setAttribute('fontcolor', '#FFFFFF')
 
-        const formAddNoteElement = noteDetailContainerElement.querySelector('form-add-note')
+        const formAddNoteElement =
+          noteDetailContainerElement.querySelector('form-add-note')
 
         if (formAddNoteElement) {
           formAddNoteElement.remove()
-          Utils.showElement(noteDetailElement, 'flex')
+          const buttonAddNoteElement =
+            noteDetailContainerElement.querySelector('button-add-note')
+          Utils.showElement(noteDetailElement)
           Utils.showElement(buttonAddNoteElement)
         }
 
-        if(document.querySelector('note-item-detail')) {
-          document.querySelector('note-item-detail').remove()
-        } // check later
+        const noteItemDetailElementExist =
+          document.querySelector('note-item-detail')
+        if (noteItemDetailElementExist) {
+          noteItemDetailElementExist.remove()
+        }
 
         const noteItemDetailElement = document.createElement('note-item-detail')
         noteItemDetailElement.setAttribute('titlecolor', '#E79B3D')
@@ -42,6 +48,9 @@ const home = () => {
         noteItemDetailElement.setAttribute('datecolor', '#A0A6A5')
         noteItemDetailElement.note = note
         noteDetailElement.append(noteItemDetailElement)
+
+        const noNotesSelectedElement =
+          noteDetailContainerElement.querySelector('no-notes-selected')
         Utils.hideElement(noNotesSelectedElement)
       })
 
@@ -59,6 +68,9 @@ const home = () => {
   }
 
   const showFormAddNote = () => {
+    const buttonAddNoteElement =
+      noteDetailContainerElement.querySelector('button-add-note')
+
     Utils.hideElement(noteDetailElement)
     Utils.hideElement(buttonAddNoteElement)
 
@@ -66,9 +78,12 @@ const home = () => {
     noteDetailContainerElement.appendChild(formAddNoteElement)
   }
 
+  const buttonAddNoteElement =
+    noteDetailContainerElement.querySelector('button-add-note')
+  buttonAddNoteElement.setAttribute('src', 'plus.png')
   buttonAddNoteElement.addEventListener('click', () => {
     showFormAddNote()
-  }) 
+  })
 
   showNoteList()
 }
