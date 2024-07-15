@@ -104,10 +104,19 @@ class FormAddNote extends HTMLElement {
     this._formElement.addEventListener('submit', (event) =>
       this._addNote(event)
     )
+
+    this._cancelButtonElement.addEventListener('click', (event) =>
+      this._cancelAddNote(event)
+    )
   }
 
   disconnectedCallback() {
-    this._formElement.removeEventListener('submit', this._addNote)
+    this._formElement.removeEventListener('submit', (event) =>
+      this._addNote(event)
+    )
+    this._cancelButtonElement.removeEventListener('click', (event) =>
+      this._cancelAddNote(event)
+    )
   }
 
   _validateInput(input, messageElement) {
@@ -122,8 +131,6 @@ class FormAddNote extends HTMLElement {
 
   _addNote(event) {
     event.preventDefault()
-
-    // console.log()
 
     const isTitleValid = this._validateInput(
       this._titleInput,
@@ -160,28 +167,30 @@ class FormAddNote extends HTMLElement {
         Utils.showElement(buttonAddNoteElement)
       }
     }
+  }
 
-    this._cancelButtonElement.addEventListener('click', (event) => {
-      event.preventDefault()
+  _cancelAddNote(event) {
+    event.preventDefault()
 
-      const noteDetailContainerElement = document.querySelector(
-        '#noteDetailContainer'
-      )
-      const formAddNoteElement =
-        noteDetailContainerElement.querySelector('form-add-note')
+    this.dispatchEvent(new CustomEvent('addNoteCanceled'))
 
-      if (formAddNoteElement) {
-        formAddNoteElement.remove()
+    // const noteDetailContainerElement = document.querySelector(
+    //   '#noteDetailContainer'
+    // )
+    // const formAddNoteElement =
+    //   noteDetailContainerElement.querySelector('form-add-note')
 
-        const noteDetailElement =
-          noteDetailContainerElement.querySelector('note-detail')
-        const buttonAddNoteElement =
-          noteDetailContainerElement.querySelector('button-add-note')
+    // if (formAddNoteElement) {
+    //   formAddNoteElement.remove()
 
-        Utils.showElement(noteDetailElement)
-        Utils.showElement(buttonAddNoteElement)
-      }
-    })
+    //   const noteDetailElement =
+    //     noteDetailContainerElement.querySelector('note-detail')
+    //   const buttonAddNoteElement =
+    //     noteDetailContainerElement.querySelector('button-add-note')
+
+    //   Utils.showElement(noteDetailElement)
+    //   Utils.showElement(buttonAddNoteElement)
+    // }
   }
 
   render() {
