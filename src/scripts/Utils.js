@@ -1,4 +1,8 @@
 class Utils {
+  static emptyElement(element) {
+    element.innerHTML = ''
+  }
+
   static showElement(element, display = 'block') {
     element.style.display = display
     element.hidden = false
