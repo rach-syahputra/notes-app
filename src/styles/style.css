@@ -23,6 +23,10 @@ body {
   justify-items: center;
 }
 
+.container .note-list-container {
+  width: 100%;
+}
+
 .container .note-detail-container {
   display: none;
 }
