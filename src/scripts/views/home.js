@@ -12,6 +12,8 @@ const home = () => {
     noteDetailContainerElement.querySelector('note-detail')
 
   const showNoteList = async () => {
+    Utils.emptyElement(noteListElement)
+
     const notes = await NotesAPi.getNotes()
     const noteItemElements = notes.map((note) => {
       const noteItemElement = document.createElement('note-item')
@@ -77,7 +79,14 @@ const home = () => {
     Utils.hideElement(buttonAddNoteElement)
 
     const formAddNoteElement = document.createElement('form-add-note')
+    formAddNoteElement.addEventListener('noteAdded', onAddNoteHandler)
     noteDetailContainerElement.appendChild(formAddNoteElement)
+  }
+
+  const onAddNoteHandler = async (event) => {
+    const note = event.detail
+    await NotesAPi.createNote(note)
+    showNoteList()
   }
 
   const buttonAddNoteElement =
