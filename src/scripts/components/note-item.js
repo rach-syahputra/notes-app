@@ -72,19 +72,10 @@ class NoteItem extends HTMLElement {
       color: ${this.fontcolor};
     }
     
-    .header {
-      display: flex;
-      justify-content: space-between;
+    .note-title {
       align-items: center;
       width: 100%;
-      height: 16px;
-    }
-
-    .rounded-brown {
-      width: 10px;
-      height: 10px;
-      border: 3px solid #E79B3D;
-      border-radius: 999px;
+      margin: 0;
     }
 
     .note-date {
@@ -106,10 +97,7 @@ class NoteItem extends HTMLElement {
     this._shadowRoot.appendChild(this._style)
     this._shadowRoot.innerHTML += `
       <div class="item">
-        <div class="header">
-          <h4>${this._note.title}</h4>
-          <div class="rounded-brown"></div>
-        </div>
+        <h4 class="note-title">${this._note.title}</h4>
         <p class="note-body">${this._note.body}</p>
         <span class="note-date">${Utils.formatDate(this._note.createdAt)}</span>
       </div>
