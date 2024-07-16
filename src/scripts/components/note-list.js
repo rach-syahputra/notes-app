@@ -83,7 +83,7 @@ class NoteList extends HTMLElement {
 
     setTimeout(() => {
       listElement.classList.add('show')
-    }, 300)
+    }, 10)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
