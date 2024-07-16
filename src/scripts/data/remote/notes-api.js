@@ -1,7 +1,7 @@
 const BASE_URL = 'https://notes-api.dicoding.dev/v2'
 
 class NotesAPi {
-  static async getNotes() {
+  static async getUnarchivedNotes() {
     try {
       const response = await fetch(`${BASE_URL}/notes`)
 
