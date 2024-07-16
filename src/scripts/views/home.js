@@ -95,6 +95,10 @@ const home = () => {
           onArchiveNoteHandler(noteControlsElement, note.id)
         )
 
+        noteControlsElement.addEventListener('removeNote', () =>
+          onRemoveNoteHandler(note.id)
+        )
+
         const noNotesSelectedElement =
           noteDetailContainerElement.querySelector('no-notes-selected')
         Utils.hideElement(noNotesSelectedElement)
@@ -203,6 +207,12 @@ const home = () => {
         noteControlsElement.archived = !noteControlsElement.archived
       }
     }
+
+    onFilterNotesHandler()
+  }
+
+  const onRemoveNoteHandler = async (noteId) => {
+    await NotesAPi.removeNote(noteId)
 
     onFilterNotesHandler()
   }
