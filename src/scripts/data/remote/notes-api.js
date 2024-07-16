@@ -60,7 +60,28 @@ class NotesAPi {
 
   static async archiveNote(noteId) {
     try {
-      const response = await fetch(`${BASE_URL}/note/${noteId}/archive`, {
+      const response = await fetch(`${BASE_URL}/notes/${noteId}/archive`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+
+      if (!response.status >= 200 && response.status < 300) {
+        throw new Error('Add note failed')
+      }
+
+      const responseJson = await response.json()
+
+      return responseJson
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  static async unarchiveNote(noteId) {
+    try {
+      const response = await fetch(`${BASE_URL}/notes/${noteId}/unarchive`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
