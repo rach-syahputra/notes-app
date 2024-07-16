@@ -11,11 +11,29 @@ const home = () => {
   const noteDetailElement =
     noteDetailContainerElement.querySelector('note-detail')
 
-  const showNoteList = async () => {
+  const showUnarchivedNotesList = async () => {
+    Utils.emptyElement(noteListElement)
+    resetNoteItemAttributes()
+
+    const notes = await NotesAPi.getUnarchivedNotes()
+
+    const noteItemElements = showNoteItems(notes)
+
+    noteListElement.append(...noteItemElements)
+  }
+
+  const showArchivedNotesList = async () => {
     Utils.emptyElement(noteListElement)
 
-    const notes = await NotesAPi.getNotes()
-    const noteItemElements = notes.map((note) => {
+    const notes = await NotesAPi.getArchivedNotes()
+
+    const noteItemElements = showNoteItems(notes)
+
+    noteListElement.append(...noteItemElements)
+  }
+
+  const showNoteItems = (notes) => {
+    return notes.map((note) => {
       const noteItemElement = document.createElement('note-item')
 
       noteItemElement.setAttribute('bgcolor', '#FAFAFA')
@@ -71,7 +89,6 @@ const home = () => {
 
       return noteItemElement
     })
-    noteListElement.append(...noteItemElements)
   }
 
   const resetNoteItemAttributes = () => {
@@ -99,10 +116,21 @@ const home = () => {
     noteDetailContainerElement.appendChild(formAddNoteElement)
   }
 
+  const onFilterNotesHandler = () => {
+    const activeButton = notesFilterElement.shadowRoot.querySelector('.active')
+    if (activeButton.innerHTML.toLowerCase() === 'unarchived') {
+      showUnarchivedNotesList()
+    }
+
+    if (activeButton.innerHTML.toLowerCase() === 'archived') {
+      showArchivedNotesList()
+    }
+  }
+
   const onAddNoteHandler = async (event) => {
     const note = event.detail
     await NotesAPi.createNote(note)
-    showNoteList()
+    showUnarchivedNotesList()
   }
 
   const onCancelAddNoteHandler = () => {
@@ -156,6 +184,11 @@ const home = () => {
     }
   }
 
+  // add event listener to notes-filter
+  const notesFilterElement =
+    noteListContainerElement.querySelector('notes-filter')
+  notesFilterElement.addEventListener('filterNotes', onFilterNotesHandler)
+
   // add event listener to button-add-new-note
   const buttonAddNoteElement = noteDetailContainerElement.querySelector(
     'button-add-new-note'
@@ -167,7 +200,7 @@ const home = () => {
   })
   //
 
-  showNoteList()
+  showUnarchivedNotesList()
 }
 
 export default home
