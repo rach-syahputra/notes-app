@@ -45,6 +45,7 @@ const home = () => {
           noteItemDetailElementExist.remove()
         }
 
+        // add note-item-detail custom element
         const noteItemDetailElement = document.createElement('note-item-detail')
         noteItemDetailElement.setAttribute('titlecolor', '#E79B3D')
         noteItemDetailElement.setAttribute('bodycolor', '#000000')
@@ -53,6 +54,15 @@ const home = () => {
         const noteData = await NotesAPi.getSingleNote(note.id)
         noteItemDetailElement.note = noteData
         noteDetailElement.append(noteItemDetailElement)
+
+        const noteControlsElement =
+          noteItemDetailElement.shadowRoot.querySelector('note-controls')
+        //
+        noteControlsElement.archived = note.archived
+        // add event listener to note-controls custom element
+        noteControlsElement.addEventListener('archiveNote', () =>
+          onArchiveNoteHandler(noteControlsElement, note.id)
+        )
 
         const noNotesSelectedElement =
           noteDetailContainerElement.querySelector('no-notes-selected')
@@ -113,13 +123,49 @@ const home = () => {
     }
   }
 
+  const onArchiveNoteHandler = async (noteControlsElement, noteId) => {
+    const isNoteArchived = noteControlsElement.archived
+    noteControlsElement.archived = !isNoteArchived
+
+    // UNARCHIVE NOTE
+    if (isNoteArchived) {
+      const response = await NotesAPi.unarchiveNote(noteId)
+
+      if (!response) {
+        noteControlsElement.archived = !noteControlsElement.archived
+      }
+
+      const getNote = await NotesAPi.getSingleNote(noteId)
+      if (getNote.archived) {
+        noteControlsElement.archived = !noteControlsElement.archived
+      }
+    }
+    // ARCHIVE NOTE
+    else {
+      const response = await NotesAPi.archiveNote(noteId)
+
+      if (!response) {
+        noteControlsElement.archived = !noteControlsElement.archived
+      }
+
+      const getNote = await NotesAPi.getSingleNote(noteId)
+
+      if (!getNote.archived) {
+        noteControlsElement.archived = !noteControlsElement.archived
+      }
+    }
+  }
+
+  // add event listener to button-add-new-note
   const buttonAddNoteElement = noteDetailContainerElement.querySelector(
     'button-add-new-note'
   )
+
   buttonAddNoteElement.setAttribute('src', 'plus.png')
   buttonAddNoteElement.addEventListener('click', () => {
     showFormAddNote()
   })
+  //
 
   showNoteList()
 }
