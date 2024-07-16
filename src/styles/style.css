@@ -25,6 +25,9 @@ body {
 
 .container .note-list-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .container .note-detail-container {
