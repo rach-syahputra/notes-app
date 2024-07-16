@@ -194,6 +194,8 @@ const home = () => {
         noteControlsElement.archived = !noteControlsElement.archived
       }
     }
+
+    onFilterNotesHandler()
   }
 
   // add event listener to notes-filter
