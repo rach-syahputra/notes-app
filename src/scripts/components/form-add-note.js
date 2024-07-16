@@ -32,6 +32,12 @@ class FormAddNote extends HTMLElement {
         display: flex;
         flex-direction: column;
         gap: 16px;
+        transform: scale(0.97);
+      }
+
+      .show {
+        transform: scale(1);
+        transition: all .3s ease-out;
       }
 
       label {
@@ -87,6 +93,11 @@ class FormAddNote extends HTMLElement {
         background-color: #E79B3D;
         color: #fff;
         border: none;
+      }
+
+      .add-note:hover {
+        background-color: #bb7c2d;
+        transition: all 150ms ease-in-out;
       }
 
       .cancel {
@@ -197,7 +208,6 @@ class FormAddNote extends HTMLElement {
         </div>
       </form>
     `
-
     this._formElement = this._shadowRoot.querySelector('form')
     this._titleInput = this._shadowRoot.querySelector('#title')
     this._bodyInput = this._shadowRoot.querySelector('#body')
@@ -206,6 +216,10 @@ class FormAddNote extends HTMLElement {
     this._bodyValidationMessage =
       this._shadowRoot.querySelector('#bodyValidation')
     this._cancelButtonElement = this._shadowRoot.querySelector('.cancel')
+
+    setTimeout(() => {
+      this._formElement.classList.add('show')
+    }, 10)
 
     // validations
     this._titleInput.addEventListener('change', () =>
