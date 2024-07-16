@@ -19,6 +19,12 @@ const home = () => {
 
     const noteItemElements = showNoteItems(notes)
 
+    if (noteItemElements.length === 0) {
+      const noNotesElement = document.createElement('no-notes')
+      noNotesElement.setAttribute('fontcolor', '#A0A6A5')
+      noteListElement.append(noNotesElement)
+    }
+
     noteListElement.append(...noteItemElements)
   }
 
@@ -28,6 +34,12 @@ const home = () => {
     const notes = await NotesAPi.getArchivedNotes()
 
     const noteItemElements = showNoteItems(notes)
+
+    if (noteItemElements.length === 0) {
+      const noNotesElement = document.createElement('no-notes')
+      noNotesElement.setAttribute('fontcolor', '#A0A6A5')
+      noteListElement.append(noNotesElement)
+    }
 
     noteListElement.append(...noteItemElements)
   }
