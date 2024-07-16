@@ -85,7 +85,7 @@ class NotesAPi {
       })
 
       if (!response.status >= 200 && response.status < 300) {
-        throw new Error('Add note failed')
+        throw new Error('Archive note failed')
       }
 
       const responseJson = await response.json()
@@ -106,7 +106,7 @@ class NotesAPi {
       })
 
       if (!response.status >= 200 && response.status < 300) {
-        throw new Error('Add note failed')
+        throw new Error('Unarchive note failed')
       }
 
       const responseJson = await response.json()
