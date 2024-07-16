@@ -13,7 +13,8 @@ const home = () => {
 
   const showUnarchivedNotesList = async () => {
     Utils.emptyElement(noteListElement)
-    resetNoteItemAttributes()
+
+    resetNoteDetail()
 
     const notes = await NotesAPi.getUnarchivedNotes()
 
@@ -30,6 +31,8 @@ const home = () => {
 
   const showArchivedNotesList = async () => {
     Utils.emptyElement(noteListElement)
+
+    resetNoteDetail()
 
     const notes = await NotesAPi.getArchivedNotes()
 
@@ -106,6 +109,20 @@ const home = () => {
 
       return noteItemElement
     })
+  }
+
+  const resetNoteDetail = () => {
+    Utils.emptyElement(noteDetailElement)
+
+    const img = document.createElement('img')
+    img.setAttribute('src', 'notebook.svg')
+    img.setAttribute('width', '200')
+
+    const noNotesSelectedElement = document.createElement('no-notes-selected')
+    noNotesSelectedElement.setAttribute('fontcolor', '#A0A6A5')
+
+    noteDetailElement.appendChild(img)
+    noteDetailElement.appendChild(noNotesSelectedElement)
   }
 
   const resetNoteItemAttributes = () => {
