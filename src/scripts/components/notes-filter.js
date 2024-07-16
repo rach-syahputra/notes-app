@@ -2,6 +2,9 @@ class NotesFilter extends HTMLElement {
   _shadowRoot = null
   _style = null
 
+  _buttonElements = null
+  _archived = false
+
   constructor() {
     super()
 
@@ -50,6 +53,13 @@ class NotesFilter extends HTMLElement {
     this._shadowRoot.innerHTML = ''
   }
 
+  _filterNotes(event, button) {
+    this._buttonElements.forEach((btn) => btn.classList.remove('active'))
+    button.classList.add('active')
+
+    this.dispatchEvent(new CustomEvent('filterNotes'))
+  }
+
   render() {
     this._emptyContent()
     this._updateStyle()
@@ -62,13 +72,12 @@ class NotesFilter extends HTMLElement {
       </div>
     `
 
-    const buttonElements = this._shadowRoot.querySelectorAll('button')
+    this._buttonElements = this._shadowRoot.querySelectorAll('button')
 
-    buttonElements.forEach((button) => {
-      button.addEventListener('click', () => {
-        buttonElements.forEach((btn) => btn.classList.remove('active'))
-        button.classList.add('active')
-      })
+    this._buttonElements.forEach((button) => {
+      button.addEventListener('click', (event) =>
+        this._filterNotes(event, button)
+      )
     })
   }
 }
