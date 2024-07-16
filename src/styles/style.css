@@ -12,6 +12,7 @@ header {
 
 body {
   font-family: sans-serif;
+  overflow: scroll;
 }
 
 .container {
