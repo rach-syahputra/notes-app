@@ -1,5 +1,6 @@
 import NotesAPi from '../data/remote/notes-api.js'
 import Utils from '../Utils.js'
+import Swal from 'sweetalert2'
 
 const home = () => {
   const noteListContainerElement = document.querySelector('#noteListContainer')
@@ -229,7 +230,16 @@ const home = () => {
   }
 
   const onRemoveNoteHandler = async (noteId) => {
-    await NotesAPi.removeNote(noteId)
+    const result = await Swal.fire({
+      title: 'Are you sure you want to delete this note?',
+      showCancelButton: true,
+      confirmButtonText: 'Remove',
+    })
+
+    if (result.isConfirmed) {
+      await NotesAPi.removeNote(noteId)
+      Swal.fire('Removed!', '', 'success')
+    }
 
     onFilterNotesHandler()
   }
