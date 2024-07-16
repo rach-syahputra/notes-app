@@ -1,4 +1,4 @@
-class ButtonAddNote extends HTMLElement {
+class ButtonAddNewNote extends HTMLElement {
   _shadowRoot = null
   _style = null
 
@@ -79,7 +79,7 @@ class ButtonAddNote extends HTMLElement {
         <div class="img-container">
           <img src="${this.src}">
         </div>
-        <span>Add note</span>
+        <span>Add new note</span>
       </button>
     `
   }
@@ -95,4 +95,4 @@ class ButtonAddNote extends HTMLElement {
   }
 }
 
-customElements.define('button-add-note', ButtonAddNote)
+customElements.define('button-add-new-note', ButtonAddNewNote)

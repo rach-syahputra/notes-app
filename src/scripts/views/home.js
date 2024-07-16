@@ -32,8 +32,9 @@ const home = () => {
 
         if (formAddNoteElement) {
           formAddNoteElement.remove()
-          const buttonAddNoteElement =
-            noteDetailContainerElement.querySelector('button-add-note')
+          const buttonAddNoteElement = noteDetailContainerElement.querySelector(
+            'button-add-new-note'
+          )
           Utils.showElement(noteDetailElement)
           Utils.showElement(buttonAddNoteElement)
         }
@@ -72,8 +73,9 @@ const home = () => {
   }
 
   const showFormAddNote = () => {
-    const buttonAddNoteElement =
-      noteDetailContainerElement.querySelector('button-add-note')
+    const buttonAddNoteElement = noteDetailContainerElement.querySelector(
+      'button-add-new-note'
+    )
 
     Utils.hideElement(noteDetailElement)
     Utils.hideElement(buttonAddNoteElement)
@@ -102,16 +104,18 @@ const home = () => {
 
       const noteDetailElement =
         noteDetailContainerElement.querySelector('note-detail')
-      const buttonAddNoteElement =
-        noteDetailContainerElement.querySelector('button-add-note')
+      const buttonAddNoteElement = noteDetailContainerElement.querySelector(
+        'button-add-new-note'
+      )
 
       Utils.showElement(noteDetailElement)
       Utils.showElement(buttonAddNoteElement)
     }
   }
 
-  const buttonAddNoteElement =
-    noteDetailContainerElement.querySelector('button-add-note')
+  const buttonAddNoteElement = noteDetailContainerElement.querySelector(
+    'button-add-new-note'
+  )
   buttonAddNoteElement.setAttribute('src', 'plus.png')
   buttonAddNoteElement.addEventListener('click', () => {
     showFormAddNote()
