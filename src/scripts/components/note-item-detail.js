@@ -105,6 +105,7 @@ class NoteItemDetail extends HTMLElement {
         <span class="note-title">${this._note.title}</span>
         <p class="note-body">${this._note.body}</p>
         <span class="note-date">${Utils.formatDate(this._note.createdAt)}</span>
+        <note-controls removesrc="trash.png"></note-controls>
       </div>
     `
   }
