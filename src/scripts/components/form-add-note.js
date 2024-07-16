@@ -54,7 +54,7 @@ class FormAddNote extends HTMLElement {
 
       input#title {
         color: #E79B3D;
-        font-size: 21px;
+        font-size: 16px;
         font-weight: bold;
         padding: 8px;
       }
@@ -62,6 +62,7 @@ class FormAddNote extends HTMLElement {
       textarea#body {
         height: 200px;
         padding: 8px;
+        font-size: 16px;
       }
 
       .validation-message {
@@ -148,24 +149,6 @@ class FormAddNote extends HTMLElement {
       }
 
       this.dispatchEvent(new CustomEvent('noteAdded', { detail: note }))
-
-      const noteDetailContainerElement = document.querySelector(
-        '#noteDetailContainer'
-      )
-      const formAddNoteElement =
-        noteDetailContainerElement.querySelector('form-add-note')
-
-      if (formAddNoteElement) {
-        formAddNoteElement.remove()
-
-        const noteDetailElement =
-          noteDetailContainerElement.querySelector('note-detail')
-        const buttonAddNoteElement =
-          noteDetailContainerElement.querySelector('button-add-note')
-
-        Utils.showElement(noteDetailElement)
-        Utils.showElement(buttonAddNoteElement)
-      }
     }
   }
 
@@ -173,24 +156,6 @@ class FormAddNote extends HTMLElement {
     event.preventDefault()
 
     this.dispatchEvent(new CustomEvent('addNoteCanceled'))
-
-    // const noteDetailContainerElement = document.querySelector(
-    //   '#noteDetailContainer'
-    // )
-    // const formAddNoteElement =
-    //   noteDetailContainerElement.querySelector('form-add-note')
-
-    // if (formAddNoteElement) {
-    //   formAddNoteElement.remove()
-
-    //   const noteDetailElement =
-    //     noteDetailContainerElement.querySelector('note-detail')
-    //   const buttonAddNoteElement =
-    //     noteDetailContainerElement.querySelector('button-add-note')
-
-    //   Utils.showElement(noteDetailElement)
-    //   Utils.showElement(buttonAddNoteElement)
-    // }
   }
 
   render() {
