@@ -52,6 +52,7 @@ const home = () => {
       noteItemElement.setAttribute('fontcolor', '#000000')
       noteItemElement.note = note
 
+      // add click event listener to note-item
       noteItemElement.addEventListener('click', async () => {
         resetNoteItemAttributes()
         noteItemElement.setAttribute('bgcolor', '#E79B3D')
@@ -142,6 +143,14 @@ const home = () => {
   const onAddNoteHandler = async (event) => {
     const note = event.detail
     await NotesAPi.createNote(note)
+
+    const formAddNoteElement =
+      noteDetailContainerElement.querySelector('form-add-note')
+    formAddNoteElement.remove()
+
+    Utils.showElement(noteDetailElement)
+    Utils.showElement(buttonAddNoteElement)
+
     showUnarchivedNotesList()
   }
 
