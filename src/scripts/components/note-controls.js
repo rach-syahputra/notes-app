@@ -7,10 +7,6 @@ class NoteControls extends HTMLElement {
   _archiveButtonElement = null
   _removeButtonElement = null
 
-  static get observedAttributes() {
-    return ['archivesrc', 'unarchivesrc', 'removesrc']
-  }
-
   constructor() {
     super()
 
@@ -28,14 +24,6 @@ class NoteControls extends HTMLElement {
 
   get archived() {
     return this._archived
-  }
-
-  set removesrc(value) {
-    this._removesrc = value
-  }
-
-  get removesrc() {
-    return this._removesrc
   }
 
   _updateStyle() {
@@ -79,8 +67,12 @@ class NoteControls extends HTMLElement {
     )
   }
 
-  _archiveNote(event) {
+  _archiveNote() {
     this.dispatchEvent(new CustomEvent('archiveNote'))
+  }
+
+  _removeNote() {
+    this.dispatchEvent(new CustomEvent('removeNote'))
   }
 
   render() {
@@ -101,20 +93,14 @@ class NoteControls extends HTMLElement {
 
     this._archiveButtonElement =
       this._shadowRoot.querySelector('.archive-button')
+    this._removeButtonElement = this._shadowRoot.querySelector('.remove-button')
 
-    this._archiveButtonElement.addEventListener('click', (event) =>
-      this._archiveNote(event)
+    this._archiveButtonElement.addEventListener('click', () =>
+      this._archiveNote()
     )
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    switch (name) {
-      case 'removesrc':
-        this.removesrc = newValue
-        break
-    }
-
-    this.render()
+    this._removeButtonElement.addEventListener('click', () =>
+      this._removeNote()
+    )
   }
 }
 
