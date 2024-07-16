@@ -13,7 +13,12 @@ const home = () => {
     noteDetailContainerElement.querySelector('note-detail')
 
   const showUnarchivedNotesList = async () => {
-    Utils.emptyElement(noteListElement)
+    noteListContainerElement.querySelector('note-list').remove()
+
+    const newNoteListElement = document.createElement('note-list')
+    newNoteListElement.setAttribute('column', '1')
+    newNoteListElement.setAttribute('gutter', '8')
+    noteListContainerElement.append(newNoteListElement)
 
     resetNoteDetail()
 
@@ -24,14 +29,19 @@ const home = () => {
     if (noteItemElements.length === 0) {
       const noNotesElement = document.createElement('no-notes')
       noNotesElement.setAttribute('fontcolor', '#A0A6A5')
-      noteListElement.append(noNotesElement)
+      newNoteListElement.append(noNotesElement)
     }
 
-    noteListElement.append(...noteItemElements)
+    newNoteListElement.append(...noteItemElements)
   }
 
   const showArchivedNotesList = async () => {
-    Utils.emptyElement(noteListElement)
+    noteListContainerElement.querySelector('note-list').remove()
+
+    const newNoteListElement = document.createElement('note-list')
+    newNoteListElement.setAttribute('column', '1')
+    newNoteListElement.setAttribute('gutter', '8')
+    noteListContainerElement.append(newNoteListElement)
 
     resetNoteDetail()
 
@@ -42,10 +52,10 @@ const home = () => {
     if (noteItemElements.length === 0) {
       const noNotesElement = document.createElement('no-notes')
       noNotesElement.setAttribute('fontcolor', '#A0A6A5')
-      noteListElement.append(noNotesElement)
+      newNoteListElement.append(noNotesElement)
     }
 
-    noteListElement.append(...noteItemElements)
+    newNoteListElement.append(...noteItemElements)
   }
 
   const showNoteItems = (notes) => {
@@ -127,7 +137,9 @@ const home = () => {
   }
 
   const resetNoteItemAttributes = () => {
-    const noteItemElements = noteListElement.querySelectorAll('note-item')
+    const noteItemElements = noteListContainerElement
+      .querySelector('note-list')
+      .querySelectorAll('note-item')
     noteItemElements.forEach((noteItemElement) => {
       noteItemElement.setAttribute('bgcolor', '#FAFAFA')
       noteItemElement.setAttribute('fontcolor', '#000000')

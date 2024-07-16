@@ -29,6 +29,15 @@ class NoteList extends HTMLElement {
         grid-template-columns: ${'1fr '.repeat(this.column)};
         gap: ${this.gutter}px;
         padding: 0 8px;
+        opacity: 0;
+        margin-top: 16px;
+      }
+
+      .show {
+        margin-top: 0;
+        opacity: 1;
+        transition: all .8s ease-out;
+
       }
 
       @media only screen and (min-width: 768px) {
@@ -69,6 +78,12 @@ class NoteList extends HTMLElement {
         <slot></slot>
       </div>
     `
+
+    const listElement = this._shadowRoot.querySelector('.list')
+
+    setTimeout(() => {
+      listElement.classList.add('show')
+    }, 300)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
