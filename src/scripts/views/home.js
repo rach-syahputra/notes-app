@@ -273,8 +273,16 @@ const home = () => {
     })
 
     if (result.isConfirmed) {
-      await NotesAPi.removeNote(noteId)
-      Swal.fire('Removed!', '', 'success')
+      const response = await NotesAPi.removeNote(noteId)
+
+      if (response) {
+        Utils.showLoading()
+
+        setTimeout(() => {
+          Swal.fire('Removed!', '', 'success')
+          Utils.hideLoading()
+        }, 1000)
+      }
     }
 
     onFilterNotesHandler()
