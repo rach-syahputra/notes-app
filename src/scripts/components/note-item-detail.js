@@ -4,6 +4,8 @@ class NoteItemDetail extends HTMLElement {
   _shadowRoot = null
   _style = null
 
+  _itemDetailElement = null
+
   _titlecolor = ''
   _bodycolor = ''
   _datecolor = ''
@@ -72,6 +74,12 @@ class NoteItemDetail extends HTMLElement {
       .item-detail {
         display: flex;
         flex-direction: column;
+        transform: scale(0.99);
+      }
+
+      .show {
+        transform: scale(1);
+        transition: all .3s ease-out;
       }
 
       .item-detail .note-title {
@@ -108,6 +116,12 @@ class NoteItemDetail extends HTMLElement {
         <note-controls removesrc="trash.png"></note-controls>
       </div>
     `
+
+    this._itemDetailElement = this._shadowRoot.querySelector('.item-detail')
+
+    setTimeout(() => {
+      this._itemDetailElement.classList.add('show')
+    }, 10)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
