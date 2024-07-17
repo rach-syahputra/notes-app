@@ -84,6 +84,9 @@ const home = () => {
 
   const showNoteItems = (notes) => {
     return notes.map((note) => {
+      const body = Utils.truncateText(note.body, 100)
+      note.body = body
+
       const noteItemElement = document.createElement('note-item')
 
       noteItemElement.setAttribute('bgcolor', '#FAFAFA')
