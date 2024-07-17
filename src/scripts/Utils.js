@@ -26,6 +26,18 @@ class Utils {
 
     return formattedDate
   }
+
+  static showLoading() {
+    const headerElement = document.querySelector('header')
+    const loadingElement = document.createElement('loading-indicator')
+    headerElement.appendChild(loadingElement)
+  }
+
+  static hideLoading() {
+    const headerElement = document.querySelector('header')
+    const loadingElement = headerElement.querySelector('loading-indicator')
+    loadingElement.remove()
+  }
 }
 
 export default Utils
