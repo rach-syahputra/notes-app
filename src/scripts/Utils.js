@@ -38,6 +38,13 @@ class Utils {
     const loadingElement = headerElement.querySelector('loading-indicator')
     loadingElement.remove()
   }
+
+  static truncateText(text, maxLength) {
+    if (text.length <= maxLength) {
+      return text
+    }
+    return text.substring(0, maxLength - 3) + '...'
+  }
 }
 
 export default Utils
