@@ -196,6 +196,14 @@ const home = () => {
     Utils.showElement(buttonAddNoteElement)
 
     showUnarchivedNotesList()
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Note added successfully',
+      showConfirmButton: false,
+      timer: 1500,
+    })
   }
 
   const onCancelAddNoteHandler = () => {
