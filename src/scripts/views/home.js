@@ -15,47 +15,57 @@ const home = () => {
   const showUnarchivedNotesList = async () => {
     noteListContainerElement.querySelector('note-list').remove()
 
-    const newNoteListElement = document.createElement('note-list')
-    newNoteListElement.setAttribute('column', '1')
-    newNoteListElement.setAttribute('gutter', '8')
-    noteListContainerElement.append(newNoteListElement)
-
     resetNoteDetail()
+
+    Utils.showLoading()
 
     const notes = await NotesAPi.getUnarchivedNotes()
 
     const noteItemElements = showNoteItems(notes)
 
-    if (noteItemElements.length === 0) {
-      const noNotesElement = document.createElement('no-notes')
-      noNotesElement.setAttribute('fontcolor', '#A0A6A5')
-      newNoteListElement.append(noNotesElement)
-    }
+    setTimeout(() => {
+      const newNoteListElement = document.createElement('note-list')
+      newNoteListElement.setAttribute('column', '1')
+      newNoteListElement.setAttribute('gutter', '8')
+      noteListContainerElement.append(newNoteListElement)
 
-    newNoteListElement.append(...noteItemElements)
+      if (noteItemElements.length === 0) {
+        const noNotesElement = document.createElement('no-notes')
+        noNotesElement.setAttribute('fontcolor', '#A0A6A5')
+        newNoteListElement.append(noNotesElement)
+      }
+
+      newNoteListElement.append(...noteItemElements)
+      Utils.hideLoading()
+    }, 1500)
   }
 
   const showArchivedNotesList = async () => {
     noteListContainerElement.querySelector('note-list').remove()
 
-    const newNoteListElement = document.createElement('note-list')
-    newNoteListElement.setAttribute('column', '1')
-    newNoteListElement.setAttribute('gutter', '8')
-    noteListContainerElement.append(newNoteListElement)
-
     resetNoteDetail()
+
+    Utils.showLoading()
 
     const notes = await NotesAPi.getArchivedNotes()
 
     const noteItemElements = showNoteItems(notes)
 
-    if (noteItemElements.length === 0) {
-      const noNotesElement = document.createElement('no-notes')
-      noNotesElement.setAttribute('fontcolor', '#A0A6A5')
-      newNoteListElement.append(noNotesElement)
-    }
+    setTimeout(() => {
+      const newNoteListElement = document.createElement('note-list')
+      newNoteListElement.setAttribute('column', '1')
+      newNoteListElement.setAttribute('gutter', '8')
+      noteListContainerElement.append(newNoteListElement)
 
-    newNoteListElement.append(...noteItemElements)
+      if (noteItemElements.length === 0) {
+        const noNotesElement = document.createElement('no-notes')
+        noNotesElement.setAttribute('fontcolor', '#A0A6A5')
+        newNoteListElement.append(noNotesElement)
+      }
+
+      newNoteListElement.append(...noteItemElements)
+      Utils.hideLoading()
+    }, 1500)
   }
 
   const showNoteItems = (notes) => {
