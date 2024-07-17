@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2'
+
 const BASE_URL = 'https://notes-api.dicoding.dev/v2'
 
 class NotesAPi {
@@ -5,7 +7,12 @@ class NotesAPi {
     try {
       const response = await fetch(`${BASE_URL}/notes`)
 
-      if (!response.status >= 200 && response.status < 300) {
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
         throw new Error('Something went wrong')
       }
 
@@ -14,7 +21,11 @@ class NotesAPi {
 
       return data
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 
@@ -22,7 +33,12 @@ class NotesAPi {
     try {
       const response = await fetch(`${BASE_URL}/notes/archived`)
 
-      if (!response.status >= 200 && response.status < 300) {
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
         throw new Error('Something went wrong')
       }
 
@@ -31,7 +47,11 @@ class NotesAPi {
 
       return data
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 
@@ -39,7 +59,12 @@ class NotesAPi {
     try {
       const response = await fetch(`${BASE_URL}/notes/${noteId}`)
 
-      if (!response.status >= 200 && response.status < 300) {
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
         throw new Error('Something went wrong')
       }
 
@@ -48,7 +73,11 @@ class NotesAPi {
 
       return data
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 
@@ -62,8 +91,13 @@ class NotesAPi {
         body: JSON.stringify(note),
       })
 
-      if (!response.status >= 200 && response.status < 300) {
-        throw new Error('Add note failed')
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+        throw new Error('Something went wrong')
       }
 
       const responseJson = await response.json()
@@ -71,7 +105,11 @@ class NotesAPi {
 
       return data
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 
@@ -84,15 +122,24 @@ class NotesAPi {
         },
       })
 
-      if (!response.status >= 200 && response.status < 300) {
-        throw new Error('Archive note failed')
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+        throw new Error('Something went wrong')
       }
 
       const responseJson = await response.json()
 
       return responseJson
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 
@@ -105,15 +152,24 @@ class NotesAPi {
         },
       })
 
-      if (!response.status >= 200 && response.status < 300) {
-        throw new Error('Unarchive note failed')
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+        throw new Error('Something went wrong')
       }
 
       const responseJson = await response.json()
 
       return responseJson
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 
@@ -126,15 +182,24 @@ class NotesAPi {
         },
       })
 
-      if (!response.status >= 200 && response.status < 300) {
-        throw new Error('Remove note failed')
+      if (response.status !== 200) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+        throw new Error('Something went wrong')
       }
 
       const responseJson = await response.json()
 
       return responseJson
     } catch (error) {
-      console.error(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
     }
   }
 }
