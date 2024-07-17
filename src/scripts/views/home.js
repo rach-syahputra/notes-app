@@ -11,7 +11,11 @@ const home = () => {
     noteDetailContainerElement.querySelector('note-detail')
 
   const showUnarchivedNotesList = async () => {
-    noteListContainerElement.querySelector('note-list').remove()
+    const noteListElement = noteListContainerElement.querySelector('note-list')
+
+    if (noteListElement) {
+      noteListElement.remove()
+    }
 
     resetNoteDetail()
 
@@ -43,7 +47,11 @@ const home = () => {
   }
 
   const showArchivedNotesList = async () => {
-    noteListContainerElement.querySelector('note-list').remove()
+    const noteListElement = noteListContainerElement.querySelector('note-list')
+
+    if (noteListElement) {
+      noteListElement.remove()
+    }
 
     resetNoteDetail()
 
@@ -196,7 +204,10 @@ const home = () => {
 
     const formAddNoteElement =
       noteDetailContainerElement.querySelector('form-add-note')
-    formAddNoteElement.remove()
+
+    if (formAddNoteElement) {
+      formAddNoteElement.remove()
+    }
 
     Utils.showElement(noteDetailElement)
     Utils.showElement(buttonAddNoteElement)
