@@ -4,8 +4,6 @@ import Swal from 'sweetalert2'
 
 const home = () => {
   const noteListContainerElement = document.querySelector('#noteListContainer')
-  const noteListElement = noteListContainerElement.querySelector('note-list')
-
   const noteDetailContainerElement = document.querySelector(
     '#noteDetailContainer'
   )
